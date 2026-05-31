@@ -37,7 +37,8 @@ body {
   font-family: var(--font-base);
   color: var(--color-text);
   background-color: var(--color-bg);
-  line-height: 1.6;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -66,9 +67,33 @@ section {
 
 .section-heading {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-primary);
-  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 52px;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-accent), #f7c46a);
+  border-radius: 2px;
+}
+
+/* Centered headings (Contact, Location) */
+#contact .section-heading {
+  text-align: center;
+}
+
+#contact .section-heading::after {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* ---------------------------------------------------------
@@ -136,8 +161,10 @@ section {
 
 .nav-links a {
   color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   padding-block: 0.25rem;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s;
@@ -205,13 +232,53 @@ section {
 }
 
 /* ---------------------------------------------------------
+   Two-column section layout (text + image)
+   --------------------------------------------------------- */
+.section-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.section-two-col.reverse .section-image {
+  order: -1;
+}
+
+.section-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .section-two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .section-two-col.reverse .section-image {
+    order: 0;
+  }
+
+  .section-img {
+    height: 380px;
+  }
+}
+
+
+/* ---------------------------------------------------------
    Section 1 — Hero
    --------------------------------------------------------- */
 #hero {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, #0f3550 0%, var(--color-primary) 50%, #1e6b9a 100%);
   color: #fff;
-  padding-block: 7rem;
+  padding-block: 7rem 8rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-logo {
@@ -223,14 +290,18 @@ section {
 .hero-title {
   font-size: clamp(2rem, 6vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 }
 
 .hero-tagline {
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
   font-weight: 400;
-  opacity: 0.88;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
   margin-bottom: 2.5rem;
 }
 
@@ -255,6 +326,105 @@ section {
   outline-offset: 2px;
 }
 
+/* Hero two-column layout */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vertical trust stats */
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  backdrop-filter: blur(4px);
+  flex-shrink: 0;
+  width: 180px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  line-height: 1.1;
+}
+
+.hero-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-align: center;
+}
+
+.hero-stat-divider {
+  width: 48px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+  margin-block: 1.5rem;
+}
+
+/* Hero wave divider */
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 0;
+}
+
+.hero-wave svg {
+  width: 100%;
+  height: 60px;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .hero-inner {
+    flex-direction: column;
+  }
+
+  .hero-stats {
+    flex-direction: row;
+    width: auto;
+    padding: 1.25rem 2rem;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 48px;
+    margin-block: 0;
+    margin-inline: 1.5rem;
+  }
+
+  .hero-wave svg {
+    height: 36px;
+  }
+}
+
 /* ---------------------------------------------------------
    Section 2 — About
    --------------------------------------------------------- */
@@ -264,13 +434,19 @@ section {
 
 .about-body p {
   font-size: 1.0625rem;
-  line-height: 1.75;
-  max-width: 72ch;
+  line-height: 1.8;
+  max-width: 100%;
   color: var(--color-text);
 }
 
+.about-body p:first-child {
+  font-size: 1.125rem;
+  color: #2c2c2c;
+  font-weight: 500;
+}
+
 .about-body p + p {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 /* ---------------------------------------------------------
@@ -283,22 +459,37 @@ section {
 .services-text {
   font-size: 1.125rem;
   line-height: 1.7;
-  max-width: 65ch;
+  max-width: 100%;
   color: var(--color-text);
 }
 
 .services-list {
-  list-style: disc;
-  padding-left: 1.5rem;
-  margin-top: 1rem;
-  max-width: 65ch;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1.25rem;
   color: var(--color-text);
 }
 
 .services-list li {
   font-size: 1.0625rem;
-  line-height: 1.75;
-  padding-block: 0.25rem;
+  line-height: 1.6;
+  padding: 0.55rem 0 0.55rem 1.75rem;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.services-list li:last-child {
+  border-bottom: none;
+}
+
+.services-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 900;
+  font-size: 0.9rem;
+  top: 0.6rem;
 }
 
 /* ---------------------------------------------------------
@@ -331,7 +522,8 @@ section {
 }
 
 .hours-row .time {
-  color: var(--color-text);
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 .hours-note {
@@ -466,8 +658,10 @@ section {
 }
 
 .contact-label {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
   color: var(--color-primary);
 }
 
@@ -498,15 +692,17 @@ section {
 }
 
 .footer-name {
-  font-weight: 700;
-  font-size: 1.05rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
   color: #fff;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
 }
 
 .footer-copy {
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.65);
 }
 
 .footer-copy--spaced {
