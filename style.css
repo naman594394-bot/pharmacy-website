@@ -1,0 +1,563 @@
+/* =========================================================
+   Bharat Medical Store — style.css
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   CSS Custom Properties
+   --------------------------------------------------------- */
+:root {
+  --color-primary: #1A5276;
+  --color-accent:  #F39C12;
+  --color-bg:      #FFFFFF;
+  --color-text:    #1C1C1C;
+  --color-surface: #F4F6F8;
+
+  --nav-height: 64px;
+  --max-width:  1200px;
+  --radius:     8px;
+
+  --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ---------------------------------------------------------
+   Reset & Base
+   --------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   Layout helpers
+   --------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+section {
+  padding-block: 5rem;
+}
+
+.section-heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* ---------------------------------------------------------
+   Navigation
+   --------------------------------------------------------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-primary);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo images */
+.nav-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 200px;
+}
+
+.hero-logo-img {
+  max-width: min(360px, 90vw);
+  width: 100%;
+  height: auto;
+}
+
+.footer-logo-img {
+  height: 64px;
+  width: auto;
+  max-width: 220px;
+}
+
+/* Brand / logo link */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none;
+}
+
+.nav-brand-text {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* Desktop nav links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  border-bottom-color: var(--color-accent);
+  outline: none;
+}
+
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  padding: 0.25rem;
+}
+
+/* Mobile dropdown */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background-color: var(--color-primary);
+  padding-block: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+
+.mobile-menu.is-open {
+  display: block;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1.25rem;
+  gap: 0;
+}
+
+.mobile-menu ul li a {
+  display: block;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: color 0.2s;
+}
+
+.mobile-menu ul li:last-child a {
+  border-bottom: none;
+}
+
+.mobile-menu ul li a:hover {
+  color: var(--color-accent);
+}
+
+/* ---------------------------------------------------------
+   Section 1 — Hero
+   --------------------------------------------------------- */
+#hero {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding-block: 7rem;
+  text-align: center;
+}
+
+.hero-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.hero-tagline {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 400;
+  opacity: 0.88;
+  margin-bottom: 2.5rem;
+}
+
+.btn-cta {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  padding: 0.875rem 2.25rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-cta:hover,
+.btn-cta:focus-visible {
+  background-color: #d68910;
+  transform: translateY(-2px);
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------
+   Section 2 — About
+   --------------------------------------------------------- */
+#about {
+  background-color: var(--color-bg);
+}
+
+.about-body p {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  max-width: 72ch;
+  color: var(--color-text);
+}
+
+.about-body p + p {
+  margin-top: 1rem;
+}
+
+/* ---------------------------------------------------------
+   Section 3 — Services
+   --------------------------------------------------------- */
+#services {
+  background-color: var(--color-surface);
+}
+
+.services-text {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  max-width: 65ch;
+  color: var(--color-text);
+}
+
+.services-list {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  max-width: 65ch;
+  color: var(--color-text);
+}
+
+.services-list li {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  padding-block: 0.25rem;
+}
+
+/* ---------------------------------------------------------
+   Section 4 — Hours
+   --------------------------------------------------------- */
+#hours {
+  background-color: var(--color-bg);
+}
+
+.hours-card {
+  display: inline-block;
+  background-color: var(--color-surface);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 1.75rem 2.25rem;
+  margin-bottom: 1.25rem;
+  min-width: 280px;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  font-size: 1.0625rem;
+}
+
+.hours-row .day {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.hours-row .time {
+  color: var(--color-text);
+}
+
+.hours-note {
+  font-size: 0.9375rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------
+   Section 5 — Location
+   --------------------------------------------------------- */
+#location {
+  background-color: var(--color-surface);
+}
+
+.location-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.location-address {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+}
+
+.location-address strong {
+  display: block;
+  font-size: 1.125rem;
+  color: var(--color-primary);
+  margin-bottom: 0.375rem;
+}
+
+.btn-map {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius);
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-map:hover,
+.btn-map:focus-visible {
+  background-color: #154360;
+  transform: translateY(-2px);
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.map-frame {
+  width: 100%;
+  height: 320px;
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------------------------------------------
+   Section 6 — Contact
+   --------------------------------------------------------- */
+#contact {
+  background-color: var(--color-bg);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.contact-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  border: 1px solid #e0e4e8;
+  transition: box-shadow 0.2s, transform 0.15s;
+  text-decoration: none;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.contact-card:hover,
+.contact-card:focus-visible {
+  box-shadow: 0 4px 16px rgba(26, 82, 118, 0.15);
+  transform: translateY(-3px);
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.contact-icon {
+  font-size: 2rem;
+  line-height: 1;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.contact-brand-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+}
+
+.contact-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.contact-badge.badge-wa {
+  background-color: #25D366;
+  color: #fff;
+}
+
+.contact-badge.badge-fb {
+  background-color: #1877F2;
+  color: #fff;
+}
+
+.contact-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.contact-detail {
+  font-size: 0.875rem;
+  color: #555;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  width: 100%;
+  text-align: center;
+}
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-primary);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-block: 2.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.footer-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.footer-copy {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.footer-copy--spaced {
+  margin-top: 0.5rem;
+}
+
+/* ---------------------------------------------------------
+   Responsive — Tablet (768px+)
+   --------------------------------------------------------- */
+@media (min-width: 768px) {
+  .location-inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .map-frame {
+    height: 380px;
+  }
+}
+
+/* ---------------------------------------------------------
+   Responsive — Mobile (< 768px): show hamburger
+   --------------------------------------------------------- */
+@media (max-width: 767px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Allow the absolute-positioned mobile-menu to overflow the sticky nav */
+  .site-nav {
+    overflow: visible;
+  }
+}
+
+/* ---------------------------------------------------------
+   Responsive — Desktop (1024px+)
+   --------------------------------------------------------- */
+@media (min-width: 1024px) {
+  section {
+    padding-block: 6rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   Focus-visible ring for keyboard nav
+   --------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
