@@ -7,14 +7,14 @@
    --------------------------------------------------------- */
 :root {
   --color-primary: #1A5276;
-  --color-accent:  #F39C12;
-  --color-bg:      #FFFFFF;
-  --color-text:    #1C1C1C;
+  --color-accent: #F39C12;
+  --color-bg: #FFFFFF;
+  --color-text: #1C1C1C;
   --color-surface: #F4F6F8;
 
   --nav-height: 64px;
-  --max-width:  1200px;
-  --radius:     8px;
+  --max-width: 1200px;
+  --radius: 8px;
 
   --font-base: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -22,7 +22,9 @@
 /* ---------------------------------------------------------
    Reset & Base
    --------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -445,7 +447,7 @@ section {
   font-weight: 500;
 }
 
-.about-body p + p {
+.about-body p+p {
   margin-top: 1.25rem;
 }
 
@@ -603,7 +605,7 @@ section {
 .contact-card {
   background-color: var(--color-surface);
   border-radius: var(--radius);
-  padding: 1.5rem 1.25rem;
+  padding: 4rem 1.25rem 1rem 1.25rem;
   text-align: center;
   border: 1px solid #e0e4e8;
   transition: box-shadow 0.2s, transform 0.15s;
@@ -679,7 +681,7 @@ section {
    --------------------------------------------------------- */
 .site-footer {
   background-color: var(--color-primary);
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-block: 2.5rem;
   text-align: center;
   color: #fff;
@@ -702,7 +704,7 @@ section {
 .footer-copy {
   font-size: 0.8125rem;
   letter-spacing: 0.02em;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer-copy--spaced {
